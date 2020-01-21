@@ -6,9 +6,13 @@ namespace DiningCryptographerSimulation
     {
         static void Main(string[] args)
         {
-            var p1 = new Participant("nopara");
-            var p2 = new Participant("nullc");
-            var p3 = new Participant("satoshi");
+            var nopara = new Participant("nopara");
+            var nullc = new Participant("nullc");
+            var satoshi = new Participant("satoshi");
+
+            nopara.ShareSecret(nullc);
+            nullc.ShareSecret(satoshi);
+            satoshi.ShareSecret(nopara);
 
             Console.WriteLine("Press key to exit...");
             Console.ReadKey();
