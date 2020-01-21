@@ -4,14 +4,14 @@ using System.Text;
 
 namespace DiningCryptographerSimulation
 {
-    public class Participant
+    public class Cryptographer
     {
         private bool Secret { get; }
         private bool NeighborSecret { get; set; }
         public string Name { get; }
         public bool IPaid { get; }
 
-        public Participant(string name, bool iPaid = false)
+        public Cryptographer(string name, bool iPaid = false)
         {
             Name = name;
             IPaid = iPaid;
@@ -24,16 +24,25 @@ namespace DiningCryptographerSimulation
             Console.WriteLine($"{Name}\tgenerated {nameof(Secret)}: {Secret}");
         }
 
-        internal void ShareSecret(Participant participant)
+        internal void ShareSecret(Cryptographer participant)
         {
             participant.ReceiveSecret(this);
         }
 
-        private void ReceiveSecret(Participant participant)
+        private void ReceiveSecret(Cryptographer participant)
         {
             NeighborSecret = participant.Secret;
 
             Console.WriteLine($"{Name}\treceived secret of {participant.Name}");
+        }
+
+        public bool BroadcastResult()
+        {
+            var result = Secret ^ NeighborSecret ^ IPaid;
+
+            Console.WriteLine($"{Name}\tbroadcasted {result}");
+
+            return result;
         }
     }
 }
