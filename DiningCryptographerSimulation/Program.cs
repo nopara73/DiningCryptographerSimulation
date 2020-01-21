@@ -6,7 +6,7 @@ namespace DiningCryptographerSimulation
     {
         static void Main(string[] args)
         {
-            var nopara = new Participant("nopara");
+            var nopara = new Participant("nopara", iPaid: true);
             var nullc = new Participant("nullc");
             var satoshi = new Participant("satoshi");
 

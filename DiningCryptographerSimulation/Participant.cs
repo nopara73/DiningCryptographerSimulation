@@ -9,12 +9,18 @@ namespace DiningCryptographerSimulation
         private bool Secret { get; }
         private bool NeighborSecret { get; set; }
         public string Name { get; }
+        public bool IPaid { get; }
 
-        public Participant(string name)
+        public Participant(string name, bool iPaid = false)
         {
             Name = name;
+            IPaid = iPaid;
             Secret = SharedRandom.GenerateBool();
 
+            if (iPaid)
+            {
+                Console.WriteLine($"{Name}\tpaid for the dinner.");
+            }
             Console.WriteLine($"{Name}\tgenerated {nameof(Secret)}: {Secret}");
         }
 
